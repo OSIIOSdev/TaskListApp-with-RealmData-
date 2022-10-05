@@ -15,6 +15,7 @@ class TasksViewController: UITableViewController {
     
     private var currentTasks: Results<Task>!
     private var completedTasks: Results<Task>!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,7 @@ class TasksViewController: UITableViewController {
         content.text = task.name
         content.secondaryText = task.note
         cell.contentConfiguration = content
+        
         return cell
     }
     

@@ -45,6 +45,19 @@ class TaskListViewController: UITableViewController {
         content.text = taskList.name
         content.secondaryText = "\(taskList.tasks.count)"
         cell.contentConfiguration = content
+        
+        let currentTasks = taskList.tasks.filter("isComplete = false")
+        let completedTasks = taskList.tasks.filter("isComplete = true")
+        
+        if !currentTasks.isEmpty {
+            content.secondaryText = "\(taskList.tasks.count)"
+        } else if !completedTasks.isEmpty {
+            content.secondaryText = "✔"
+        } else {
+            content.secondaryText = "0"
+        }
+        
+        cell.contentConfiguration = content
         return cell
     }
     
