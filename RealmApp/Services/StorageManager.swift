@@ -55,6 +55,26 @@ class StorageManager {
         }
     }
     
+    func save(_ task: Task) {
+        write {
+            realm.delete(task)
+        }
+    }
+    
+    func edit(_ task: Task, newValue: String, newNote: String) {
+        write {
+            task.name = newValue
+            task.note = newNote
+        }
+    }
+    
+    func done(_ task: Task, indexPath: IndexPath) {
+        write {
+            let bool = indexPath.section == 0 ? true : false
+            task.setValue(bool, forKey: "isComplete")
+        }
+    }
+    
     private func write(completion: () -> Void) {
         do {
             try realm.write {
@@ -64,4 +84,6 @@ class StorageManager {
             print(error)
         }
     }
+    
+    
 }
